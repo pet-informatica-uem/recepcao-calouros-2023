@@ -1,1 +1,1 @@
-"use strict";
+"use strict";var cronograma=document.querySelector(".sec-cronograma"),seletores=document.querySelectorAll(".seletor-data > li > a"),dias=document.querySelectorAll(".programacao-dia"),primeiroId="dia-28-junho";window.onscroll=function(){var e=primeiroId,r=cronograma.offsetTop-scrollY;console.log(r),dias.forEach(function(o){r+o.offsetTop<=124&&(e=o.getAttribute("id"))}),seletores.forEach(function(o){o.classList.remove("active"),o.getAttribute("href").includes(e)&&o.classList.add("active")}),console.log(e)};
