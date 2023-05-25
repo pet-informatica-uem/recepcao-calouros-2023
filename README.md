@@ -1,4 +1,4 @@
-# Site da Recepção de Calouros de 2022
+# Site da Recepção de Calouros de 2023
 
 Este projeto utiliza Sass e a biblioteca gulp.js. Arquivos na pasta `css` e o script `js/all.js` são gerados pelo gulp a partir do código na pasta `scss` e na pasta `js/scripts` respectivamente e não devem ser modificados diretamente.
 
