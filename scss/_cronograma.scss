@@ -3,6 +3,7 @@
   max-width: 82rem;
   margin: 0 auto;
   padding: 6.4rem;
+  padding-top: 0;
 
   background-color: var(--cor-azul);
   font-family: "VT323", "VCR OSD Mono", "Courier New", Courier, monospace;
@@ -10,8 +11,9 @@
   text-transform: uppercase;
 
   display: grid;
-  row-gap: 1.2rem;
   column-gap: 5.4rem;
+  position: relative;
+  box-shadow: 8px 8px 0px #FF61C6, 16px 16px 0px #5BECFF;
 
   grid-template-areas:
     "titulo titulo"
@@ -20,19 +22,29 @@
   .titulo-cronograma {
     grid-area: titulo;
     font-size: 4.8rem;
+    position: sticky;
+    top: 0rem;
+    padding-top: 6.4rem;
+    z-index: 3;
+    background-color: var(--cor-azul);
   }
 
   .seletor-data {
     margin-left: 2ch;
     grid-area: datas;
+    position: sticky;
+    top: 11.2rem;
+    max-height: 9.6rem;
+    padding-top: 1.2rem;
   }
 
+  .teste{
+    position: sticky;
+    top: 12.4rem;
+
+  }
   .programacao {
     grid-area: eventos;
-
-    .dia-data {
-      margin-bottom: 2.4rem;
-    }
 
     .dia-titulo {
       margin-bottom: 0.8rem;
@@ -40,6 +52,8 @@
       align-items: center;
       justify-content: start;
       gap: 1ch;
+      top: 15.6rem;
+      z-index: 1;
 
       &::after {
         content: " ";
@@ -51,33 +65,68 @@
       }
     }
 
+    .dia-data{
+      top: 11.2rem;
+      z-index: 2;
+      padding-top: 1.2rem;
+    }
+
+    .programacao-dia{
+      position:relative;
+    }
+
     .dia-data,
     .dia-titulo {
       color: var(--cor-amarelo);
       font-size: 3.2rem;
+      position: sticky;
+      background-color: var(--cor-azul);
     }
 
     .dia-lista {
       margin-bottom: 2.4rem;
       display: flex;
       flex-flow: column nowrap;
-      gap: 2.4rem;
+      gap: 1rem;
 
       details {
+        &[open]{
+          &::before{
+            transform: rotate(90deg);
+          }
+        }
+        &::before{
+          content: '<';
+          position: absolute;
+          transform: rotate(-90deg);
+          display: inline-block;
+          top: 3.6rem;
+          left: -4.6ch;
+        }
         text-transform: none;
         font-size: 2.4rem;
+        position: relative;
 
         summary {
           text-transform: uppercase;
           font-size: 3.2rem;
           margin-bottom: 0.8rem;
+          cursor: pointer;
+        }
+
+        ul{
+          margin-left: 2rem;
+          li{
+            list-style: "· ";
+          }
         }
       }
 
-      li {
+      & > li {
         display: flex;
         flex-flow: row nowrap;
         gap: 8px;
+        min-height: 6.4rem;
       }
     }
   }
