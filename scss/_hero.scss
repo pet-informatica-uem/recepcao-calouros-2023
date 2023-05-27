@@ -1,0 +1,131 @@
+.sec-hero {
+  height: 100%;
+  height: 65.5rem;
+  background-image: url(../assets/bg.png);
+  background-position: center;
+  position: relative;
+
+  > img {
+    width: 100%;
+    height: 36.4rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .container {
+    width: 100%;
+    height: 100%;
+    max-width: 92.5rem;
+    margin: 0 auto;
+    position: relative;
+    padding-top: 6.2rem;
+
+    img {
+      position: absolute;
+    }
+
+    .palmito {
+      bottom: 5rem;
+      width: 100%;
+      z-index: 4;
+      // animation: leftToRightToleft 2s infinite;
+    }
+
+    .sol {
+      left: 7rem;
+      animation: flutuate 15s infinite;
+    }
+
+    .logo {
+      width: 100%;
+      height: fit-content;
+      max-width: 41rem;
+      margin: 0 auto;
+      position: relative;
+      .logo-escrito {
+        top: 6rem;
+        z-index: 4;
+        width: 100%;
+      }
+
+      .tri-rosa {
+        z-index: 3;
+        top: -2rem;
+        width: 100%;
+      }
+
+      .tri-marelo {
+        z-index: 0;
+        width: 100%;
+      }
+    }
+    .titulo-container {
+      width: 100%;
+      max-width: 52.2rem;
+      bottom: 0;
+      margin: 0 auto;
+      .titulo {
+        animation: titleAnimation 15s infinite;
+        bottom: 20.6rem;
+        z-index: 4;
+        width: 100%;
+        max-width: 52.2rem;
+      }
+    }
+  }
+}
+
+.sec-logos {
+  z-index: 200;
+  position: relative;
+  height: 19rem;
+
+  .top {
+    margin-top: -3rem;
+    height: 6rem;
+    background: linear-gradient(180deg, #352379 1.67%, #2c0632 101.67%);
+  }
+
+  .logos {
+    padding: 1.8rem;
+
+    .container {
+      max-width: 82.4rem;
+      margin: 0 auto;
+
+      ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      img {
+        width: 8rem;
+      }
+    }
+  }
+}
+
+@keyframes flutuate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(150%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes titleAnimation {
+  0% {
+    transform: rotate(0deg) translate(-1.5rem) rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg) translate(-1.5rem) rotate(360deg);
+  }
+}
