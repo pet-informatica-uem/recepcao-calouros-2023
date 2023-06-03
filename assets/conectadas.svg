@@ -1,0 +1,42 @@
+<svg width="92" height="76" viewBox="0 0 92 76" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g clip-path="url(#clip0_305_74)">
+<path d="M22.3584 3.25669L22.3584 31.5669H41.5948V2.77275H60.7707M31.9766 2.77275V22.0092" stroke="#FF61C6" stroke-width="1.74812" stroke-linejoin="round"/>
+<path d="M22.7212 41.1246H60.7706V69.7978M31.916 50.7428H51.1524M51.1524 31.204V12.391H79.886V3.01474" stroke="#FF61C6" stroke-width="1.74812" stroke-linejoin="round"/>
+<path d="M89.4441 31.3249V41.1246H70.3287V73.0038M12.8614 50.3799V12.0885M3.24316 21.5857L3.24316 40.7617" stroke="#FF61C6" stroke-width="1.74812" stroke-linejoin="round"/>
+<path d="M89.5051 12.391V21.9487H60.7715V31.325" stroke="#FF61C6" stroke-width="1.74812" stroke-linejoin="round"/>
+<path d="M70.1475 31.5064H79.6447" stroke="#FF61C6" stroke-width="1.74812" stroke-linejoin="round"/>
+<circle cx="22.4191" cy="2.77287" r="2.54066" fill="#FF61C6"/>
+<circle cx="31.9767" cy="2.77287" r="2.54066" fill="#FF61C6"/>
+<circle cx="31.9767" cy="21.8883" r="2.54066" fill="#FF61C6"/>
+<circle cx="22.298" cy="41.1246" r="2.54066" fill="#FF61C6"/>
+<circle cx="31.9767" cy="50.6824" r="2.54066" fill="#FF61C6"/>
+<circle cx="12.8619" cy="50.6824" r="2.54066" fill="#FF61C6"/>
+<circle cx="3.30384" cy="41.1246" r="2.54066" fill="#FF61C6"/>
+<circle cx="3.30384" cy="22.0092" r="2.54066" fill="#FF61C6"/>
+<circle cx="12.8619" cy="12.3305" r="2.54066" fill="#FF61C6"/>
+<circle cx="51.213" cy="50.6824" r="2.54066" fill="#FF61C6"/>
+<circle cx="60.7711" cy="69.9188" r="2.54066" fill="#FF61C6"/>
+<circle cx="70.3287" cy="73.0644" r="2.54066" fill="#FF61C6"/>
+<circle cx="60.7711" cy="2.77287" r="2.54066" fill="#FF61C6"/>
+<circle cx="51.213" cy="31.5669" r="2.54066" fill="#FF61C6"/>
+<circle cx="60.7711" cy="31.5669" r="2.54066" fill="#FF61C6"/>
+<circle cx="60.7711" cy="31.5669" r="2.54066" fill="#FF61C6"/>
+<circle cx="70.3287" cy="31.5669" r="2.54066" fill="#FF61C6"/>
+<circle cx="79.8873" cy="31.5669" r="2.54066" fill="#FF61C6"/>
+<circle cx="79.8873" cy="2.77287" r="2.54066" fill="#FF61C6"/>
+<circle cx="89.5656" cy="12.4515" r="2.54066" fill="#FF61C6"/>
+<circle cx="89.445" cy="31.5669" r="2.54066" fill="#FF61C6"/>
+<g style="mix-blend-mode:darken">
+<rect x="-499" y="-26" width="1440" height="128" fill="url(#pattern0)"/>
+</g>
+</g>
+<defs>
+<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="0.00208333" height="0.0234375">
+<use xlink:href="#image0_305_74" transform="scale(4.16667e-05 0.00046875)"/>
+</pattern>
+<clipPath id="clip0_305_74">
+<rect width="92" height="76" fill="white"/>
+</clipPath>
+<image id="image0_305_74" width="50" height="50" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABHNCSVQICAgIfAhkiAAAAg1JREFUaEPdmjtOw0AQhu3QRWlTu06FRMsdKGigp+cGXINLcAbKtClACi200FBRICSYz/JatlnbydrZeGakURxnH//n3exj1mmSJL/iY9iLFLIW34hz/Sb+If5VFD6Xz6V4Jr4SPxM/L66LJMM+AAn1J8l7J346QAJ5KYOyQnXkjRGS+VHyXQ8Q35aVMik7RNNemZ6lkps2FSPepw7q2gdo58T3UjD9O5ZRF3XuCtOb8F0Ku42l3lMPdaOhD6gzwVYKuPIUHvsWGtDSBdP6IxkvYyvuqA8tXTBeEJpyCi3R5EJTWzfzghzzP9EU3/yONl8X+3eTkWLq5hvNaiCM3TGH2NAHhsbmPFMDiTHZhYpv5kNrtYuVX1gaaLPqcqYEOcTa6dAPBs2uVfILVp5aLV81zwr1D1opRHepnRYZsp849jNAOwz5tK/dtnQttqfabQ0Ie2zttjkRgoX4q3KSBSCp+KdykBSQH/Fv5SAwJG4u0cwyswCRNwAgRAC12xwQwpjabQmIho1U34POACGgrN1WgBAV1245g4lFIyAmlvFuHrlQ3LdK7Sa2uq5rAWMi+ACImXAQMCYCdICYCZkCYyKIDQhu4lgBEDMHPcCYOHpzXQyYKRzBDToMdTAmjqcdjBvNMmmhWEZdviO2qqbqde3Upy2Ru2/iFY4qpPqXapotNpnXnAiXIm4MO+qLZ38bltSbrt1m9AAAAABJRU5ErkJggg=="/>
+</defs>
+</svg>
