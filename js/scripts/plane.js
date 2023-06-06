@@ -3,21 +3,15 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-// @ts-ignore
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
-// @ts-ignore
-import island from '../../assets/models/grid6.glb';
-// @ts-ignore
+import mountains from '../../assets/models/mountains.glb';
 import tex from '../../assets/models/tex.png';
-// @ts-ignore
-import palmeira from '../../assets/palms.png';
-
 
 const BLOOM_PARAMS = {
     exposure: .8,
-    bloomStrength: .25,
+    bloomStrength: .1,
     bloomThreshold: 1,
     bloomRadius: 0,
 }
@@ -29,7 +23,6 @@ class CameraComponent {
     #bloomPass;
     #renderPass;
 
-    // @ts-ignore
     #pos = 0;
 
     constructor({
@@ -83,23 +76,30 @@ class CameraComponent {
         this.camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), this.rotation);
         this.camera.rotateOnAxis(new THREE.Vector3(1, 0, 0), -this.angle);
 
-        this.camera.position.x = Math.sin(this.rotation)*this.depth*this.distance+this.anchor.x;
+        // this.camera.position.x = Math.sin(this.rotation)*this.depth*this.distance+this.anchor.x;
         this.camera.position.y = Math.sin(this.angle)*this.depth*this.distance;
-        this.camera.position.z = Math.cos(this.rotation)*this.depth*this.distance+this.anchor.z;
+        // this.camera.position.z = Math.cos(this.rotation)*this.depth*this.distance+this.anchor.z;
+    
+        this.anchor.z = this.#pos - .5;
+        this.camera.position.z = this.anchor.z;
     }
 
-    // @ts-ignore
     update(dt) {
         if (!this.camera) throw new Error('Camera não inicializada');
         
-        this.camera.position.x = Math.sin(this.rotation)*this.depth*this.distance+this.anchor.x;
+        // this.camera.position.x = Math.sin(this.rotation)*this.depth*this.distance+this.anchor.x;
         this.camera.position.y = Math.sin(this.angle)*this.depth*this.distance;
-        this.camera.position.z = Math.cos(this.rotation)*this.depth*this.distance+this.anchor.z;
+        this.camera.position.x = this.distance;
+        // this.camera.position.z = Math.cos(this.rotation)*this.depth*this.distance+this.anchor.z;
+        
+        this.#pos = (this.#pos + dt/25) % 1;
+
+        this.anchor.z = this.#pos - .5;
+        this.camera.position.z = this.anchor.z;
 
         this.camera.lookAt(this.anchor);
     }
 
-    // @ts-ignore
     draw(renderer, scene) {
         if (!this.camera) throw new Error('Camera não inicializada');
         
@@ -111,12 +111,6 @@ class CameraComponent {
 
         this.camera.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), rotation.x);
         this.camera.rotateOnAxis(new THREE.Vector3(1, 0, 0), rotation.y);
-    }
-
-    resize(width, height) {
-        this.camera.aspect = width / height;
-        this.camera.updateProjectionMatrix();
-        this.#composer.setSize( width, height );
     }
 }
 
@@ -130,13 +124,12 @@ class CameraComponent {
     renderer.setPixelRatio(window.devicePixelRatio);
 
     const scene = new THREE.Scene();
-    // const fog = new THREE.Fog(0x000000, 0, 75); 
-    const fog = new THREE.FogExp2(0x000019, 1);
+    const fog = new THREE.Fog(0x000000, 0, .4);
     scene.fog = fog;
 
     const camera = new CameraComponent({
-        angle: 15*Math.PI/180,
-        distance: .225,
+        angle: 5*Math.PI/180,
+        distance: .3,
         width,
         height,
         depth: 1,
@@ -146,82 +139,75 @@ class CameraComponent {
     const loader = new GLTFLoader();
     let obj;
 
-    loader.load(island, (gltf) => {
+    loader.load(mountains, (gltf) => { 
         obj = gltf.scene.children[0];
-        obj.scale.set(10, 10, 10);
-        
+        obj.scale.set(1, 1, 1);
+
         // @ts-ignore: material existe na mesh mas ta dando erro
-        const mat = obj.material;
+        let mat = obj.material
+        mat.magFilter = THREE.NearestFilter;
+        mat.minFilter = THREE.LinearFilter;
+        mat.emmisive = 0xff00ff;
+        
+        // let material = new THREE.TextureLoader().load(tex);
 
-        mat.emissiveIntensity = 5;
-        mat.reflectivity = 0;
+        // material.anisotropy = 4;
+        // material.matrixAutoUpdate = false;
+        // material.needsUpdate = false;
+        // material.magFilter = THREE.NearestFilter;
+        // material.minFilter = THREE.LinearFilter;
+        // material.wrapS = THREE.MirroredRepeatWrapping;
+        // material.wrapT = THREE.MirroredRepeatWrapping;
+        // material.repeat.set(1, 1);
 
-        // let grid = rectangleGeometry(100, 100);
-        // let gridMat = new THREE.MeshStandardMaterial({
-        //     wireframe: true,
-        //     wireframeLinewidth: 1,
+        // //@ts-ignore: material existe na mesh mas ta dando erro
+        // obj.material = new THREE.MeshStandardMaterial({
+        //     // roughness: .8,
         //     emissive: 0xff64ff,
-        //     emissiveIntensity: 5,
+        //     emissiveIntensity: 10,
+        //     emissiveMap: material,
+        //     flatShading: true,
+            
         // });
-        // const mesh = new THREE.Mesh(grid, gridMat);
+        let obj1 = obj.clone();
+        obj1.position.z = -1;
+        
+        let obj2 = obj.clone();
+        obj2.position.z = 1;
 
-        // scene.add(mesh);
-
-        // let line = new THREE.LineSegments()
-        // line.geometry = new THREE.WireframeGeometry(obj.geometry);
-        // line.material = new THREE.LineBasicMaterial({
-        //     color: new THREE.Color(4, 1, 4),
-        //     linewidth: 1,
-        // });
-
-        let material = new THREE.TextureLoader().load(tex);
-    
-        material.matrixAutoUpdate = false;
-        material.needsUpdate = false;
-        material.magFilter = THREE.NearestFilter;
-        material.minFilter = THREE.LinearMipMapLinearFilter;
-        material.wrapS = THREE.RepeatWrapping;
-        material.wrapT = THREE.RepeatWrapping;
-        material.repeat.set(.1, .1);
-
-        //@ts-ignore: material existe na mesh mas ta dando erro
-        obj.material = new THREE.MeshStandardMaterial({
-            // roughness: .8,
-            map: material,
-            emissive: 0xff64ff,
-            emissiveIntensity: 10,
-            emissiveMap: material,
-            roughness: .5,
-        });
-
-        obj.translateY(-.05);
-        // scene.add(line);
         scene.add(obj);
+        scene.add(obj1);
+        scene.add(obj2);
     });
+    // const ico = new THREE.IcosahedronGeometry(1, 2);
+    // const icoMaterial = new THREE.MeshStandardMaterial({
+    //     emissive: 0xff00ff,
+    //     emissiveIntensity: 5,
+    //     toneMapped: false,
+    // })
+    // const icoMesh = new THREE.Mesh(ico, icoMaterial);
 
-    let sun = new THREE.IcosahedronGeometry(.02, 1);
-    let sunMat = new THREE.MeshStandardMaterial({
-        roughness: 1,
-        metalness: 1,
-        emissive: 0xffffff,
-        emissiveIntensity: 2,
-        toneMapped: false,
-    });
-    let sunMesh = new THREE.Mesh(sun, sunMat);
-    sunMesh.position.set(-.035, .05, -.035);
-    scene.add(sunMesh);
+    // scene.add(icoMesh);
 
-    let light = new THREE.PointLight(0xffffff, .3, .5);
-    light.position.set(-.035, .05, .035);
-    scene.add(light);
+    // const boxGeometry = new THREE.BoxGeometry(100, 100, 100);
+    // const boxMaterial = new THREE.MeshStandardMaterial({
+    //     color: 0xffffff,
+    //     emissive: 0xffffff,
+    // })
+    // const box = new THREE.Mesh(boxGeometry, boxMaterial);
+    
+    // scene.add(box);
+
+    // const light = new THREE.AmbientLight(0xffffff, 1);
+    // light.position.y = 10;
+    // light.position.x = 10;
+
+    // light.castShadow = true;
+    // scene.add(light);
 
     mountainsDiv?.appendChild(renderer.domElement);
     camera.setupPostProcessing(renderer, scene);
     
-    window.addEventListener('resize', () => {
-        onWindowResize(camera, renderer)
-    });    
-
     let _time = 0;
     let dt = 0;
     function render(ms) {
@@ -229,7 +215,7 @@ class CameraComponent {
         dt = (ms - _time)/1000;
         _time = ms;
 
-        camera.rotate(-dt/2);
+        // camera.rotate(dt/10);
         camera.update(dt);
         camera.draw(renderer, scene);
     }
@@ -237,12 +223,3 @@ class CameraComponent {
 
     console.log(mountainsDiv);
 })();
-
-function onWindowResize(camera, renderer) {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    camera.resize(width, height);
-
-    renderer.setSize(width, height);
-}

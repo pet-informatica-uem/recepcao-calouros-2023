@@ -14,6 +14,14 @@ Em seguida, abra um terminal e execute os seguintes comandos:
 
 Para desenvolver o site, abra a pasta do repositório e execute
 
-4. `npx gulp`
+4. `npm run start`
 
 Em seguida, acesse [https://localhost:3000/] em seu navegador. As páginas serão automaticamente atualizadas conforme os arquivos forem sendo modificados. O comando também compila as fontes Sass para arquivos .css.
+
+## Compilação
+
+Para compilar o site você deve executar o comando
+
+`npm run build`
+
+Na pasata /dist estará seu site pronto e compilado, bastando apenas abrir o dist/index.html em seu navegador
