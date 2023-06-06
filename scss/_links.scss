@@ -80,13 +80,18 @@
             font-size: 1.5rem;
           }
 
+          //padrozina borda p/ cada elemento
+          border-left: 0.2rem solid;
+
           .uem-icon {
             width: 1.5rem;
             height: 1.5rem;
           }
 
-          // MUDAR COR DA BORDAR PARA CADA ELEMENTO
-          border-left: 0.2rem solid #9dffa1;
+          //links flutuam
+          a:hover {
+              transform: scale(1.02);
+          }
         }
       }
 
@@ -95,23 +100,66 @@
       }
 
       #caccom > .icon-box > img {
-        height: 14rem;
+        height: 12rem;
       }
 
       #pet > .icon-box > img {
-        width: 14rem;
+        width: 16rem;
       }
 
       #conectadas > .icon-box > img {
-        height: 14rem;
+        height: 12rem;
       }
 
       #din > .icon-box > img {
-        width: 14rem;
+        width: 16rem;
       }
 
       #cainfo > .icon-box > img {
         height: 14rem;
+      }
+      
+      
+      #uem > .link-list{
+        border-left-color: #9dffa1;
+        a:hover{
+          color:  #9dffa1;  
+        }
+      }
+
+      #caccom > .link-list {
+        border-left-color: #FF4D4D;
+        a:hover{
+          color:  #FF4D4D;  
+        }
+      }
+
+      #pet > .link-list {
+        border-left-color: #5BECFF;
+        a:hover{
+          color:  #5BECFF;  
+        }
+      }
+      
+      #conectadas > .link-list {
+        border-left-color: #FF61C6;
+        a:hover{
+          color:  #FF61C6;  
+        }
+      }
+
+      #din > .link-list {
+        border-left-color: #FF8A1E;
+        a:hover{
+          color:  #FF8A1E;  
+        }
+      }
+
+      #cainfo > .link-list {
+        border-left-color: #F4FF61;
+        a:hover{
+          color:  #F4FF61;  
+        }
       }
     }
   }
