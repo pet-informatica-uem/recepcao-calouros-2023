@@ -1,9 +1,15 @@
 // Oi
-@import 'cronograma.scss';
-@import 'hero.scss';
+@import "cronograma.scss";
+@import "hero.scss";
 
 html {
   font-size: 10px;
+}
+
+@media (max-width: 440px) {
+  html {
+    font-size: 8px !important;
+  }
 }
 
 body {
