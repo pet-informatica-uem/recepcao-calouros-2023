@@ -37,11 +37,7 @@ module.exports = {
                 type: 'asset/resource',
             },
             {
-                test: /\.(jpg|jpeg|gif|glb)$/i,
-                loader: 'file-loader',
-            },
-            {
-                test: /\.(png|svg)$/i,
+                test: /\.(png|svg|jpg|jpeg|gif|glb)$/i,
                 type: 'asset/resource',
             }
         ]

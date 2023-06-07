@@ -20,13 +20,14 @@ const CORES_PALMEIRAS = [
     0xf4ff61,
     0x9dffa1
 ]
-
 const BLOOM_PARAMS = {
     exposure: .8,
     bloomStrength: .25,
     bloomThreshold: 1,
     bloomRadius: 0,
 }
+
+let ANIMATION_ON = true;
 
 // @ts-ignore
 class CameraComponent {
@@ -130,6 +131,9 @@ class CameraComponent {
     const mountainsDiv = document.getElementById('render');
     const width = mountainsDiv?.clientWidth??innerWidth;
     const height = mountainsDiv?.clientHeight??innerHeight;
+    if (width < height) {
+        ANIMATION_ON = false;
+    }
 
     const renderer = new THREE.WebGLRenderer({ 
         alpha: true,
@@ -217,8 +221,10 @@ class CameraComponent {
         dt = (ms - _time)/1000;
         _time = ms;
 
-        camera.rotate(-dt/2);
-        camera.update(dt);
+        if (ANIMATION_ON){
+            camera.rotate(-dt/2);
+            camera.update(dt);   
+        }
         camera.draw(renderer, scene);
     }
     render(0);
@@ -227,6 +233,8 @@ class CameraComponent {
 function onWindowResize(camera, renderer) {
     const width = window.innerWidth;
     const height = window.innerHeight;
+
+    ANIMATION_ON = height < width;
 
     camera.resize(width, height);
 
