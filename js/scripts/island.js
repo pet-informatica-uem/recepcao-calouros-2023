@@ -12,8 +12,14 @@ import island from '../../assets/models/grid6.glb';
 // @ts-ignore
 import tex from '../../assets/models/tex.png';
 // @ts-ignore
-import palmeira from '../../assets/palms.png';
+import palmeira from '../../assets/palmeira_sprite.png';
 
+const NUMERO_PALMEIRAS = 6;
+const CORES_PALMEIRAS = [
+    0x5becff,
+    0xf4ff61,
+    0x9dffa1
+]
 
 const BLOOM_PARAMS = {
     exposure: .8,
@@ -125,12 +131,14 @@ class CameraComponent {
     const width = mountainsDiv?.clientWidth??innerWidth;
     const height = mountainsDiv?.clientHeight??innerHeight;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    const renderer = new THREE.WebGLRenderer({ 
+        alpha: true,
+        antialias: false
+    });
     renderer.setSize(width, height);
     renderer.setPixelRatio(window.devicePixelRatio);
 
     const scene = new THREE.Scene();
-    // const fog = new THREE.Fog(0x000000, 0, 75); 
     const fog = new THREE.FogExp2(0x000019, 1);
     scene.fog = fog;
 
@@ -149,55 +157,35 @@ class CameraComponent {
     loader.load(island, (gltf) => {
         obj = gltf.scene.children[0];
         obj.scale.set(10, 10, 10);
-        
-        // @ts-ignore: material existe na mesh mas ta dando erro
-        const mat = obj.material;
 
-        mat.emissiveIntensity = 5;
-        mat.reflectivity = 0;
-
-        // let grid = rectangleGeometry(100, 100);
-        // let gridMat = new THREE.MeshStandardMaterial({
-        //     wireframe: true,
-        //     wireframeLinewidth: 1,
-        //     emissive: 0xff64ff,
-        //     emissiveIntensity: 5,
-        // });
-        // const mesh = new THREE.Mesh(grid, gridMat);
-
-        // scene.add(mesh);
-
-        // let line = new THREE.LineSegments()
-        // line.geometry = new THREE.WireframeGeometry(obj.geometry);
-        // line.material = new THREE.LineBasicMaterial({
-        //     color: new THREE.Color(4, 1, 4),
-        //     linewidth: 1,
-        // });
-
-        let material = new THREE.TextureLoader().load(tex);
+        let texture = new THREE.TextureLoader().load(tex);
     
-        material.matrixAutoUpdate = false;
-        material.needsUpdate = false;
-        material.magFilter = THREE.NearestFilter;
-        material.minFilter = THREE.LinearMipMapLinearFilter;
-        material.wrapS = THREE.RepeatWrapping;
-        material.wrapT = THREE.RepeatWrapping;
-        material.repeat.set(.1, .1);
+        texture.matrixAutoUpdate = false;
+        texture.needsUpdate = false;
+        texture.magFilter = THREE.NearestFilter;
+        texture.minFilter = THREE.LinearMipMapLinearFilter;
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        // texture.repeat.set(.15, .15);
+        texture.updateMatrix();
 
-        //@ts-ignore: material existe na mesh mas ta dando erro
-        obj.material = new THREE.MeshStandardMaterial({
-            // roughness: .8,
-            map: material,
+        const material = new THREE.MeshStandardMaterial({
+            map: texture,
             emissive: 0xff64ff,
             emissiveIntensity: 10,
-            emissiveMap: material,
-            roughness: .5,
+            emissiveMap: texture,
+            roughness: .6,
         });
 
+        //@ts-ignore: material existe na mesh mas ta dando erro
+        obj.material = material;
+        obj.matrixAutoUpdate = false;
         obj.translateY(-.05);
-        // scene.add(line);
+        obj.updateMatrix();
         scene.add(obj);
     });
+
+    setupPalms(scene);
 
     let sun = new THREE.IcosahedronGeometry(.02, 1);
     let sunMat = new THREE.MeshStandardMaterial({
@@ -234,8 +222,6 @@ class CameraComponent {
         camera.draw(renderer, scene);
     }
     render(0);
-
-    console.log(mountainsDiv);
 })();
 
 function onWindowResize(camera, renderer) {
@@ -245,4 +231,25 @@ function onWindowResize(camera, renderer) {
     camera.resize(width, height);
 
     renderer.setSize(width, height);
+}
+
+function setupPalms(scene) {
+    const texture = new THREE.TextureLoader().load(palmeira);
+
+    for (let i = 0; i < NUMERO_PALMEIRAS; i++) {
+        const palm = new THREE.Sprite(new THREE.SpriteMaterial({
+            map: texture,
+            color: CORES_PALMEIRAS[
+                i%CORES_PALMEIRAS.length
+            ]
+        }));
+        palm.center.set(0.5, 0);
+        palm.scale.set(.02, .02, .02);
+
+        const direction = (Math.random() + i)/2 * Math.PI;
+        //entre 0.07 e 0.09
+        const getDistance = () => ((Math.random()*20) + 70)/1000;
+        palm.position.set(Math.cos(direction)*getDistance(), -0.05, Math.sin(direction)*getDistance());
+        scene.add(palm);
+    }
 }
