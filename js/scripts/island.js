@@ -131,6 +131,19 @@ class CameraComponent {
     const mountainsDiv = document.getElementById('render');
     const width = mountainsDiv?.clientWidth??innerWidth;
     const height = mountainsDiv?.clientHeight??innerHeight;
+    
+    const playButton = document.querySelector(".ph-play");
+    playButton?.addEventListener("click", () => {
+        ANIMATION_ON = !ANIMATION_ON;
+    });
+    
+    const vejaHorarios = document.querySelector(".veja-horarios");
+    vejaHorarios?.addEventListener("click", () => {
+        window.scroll({
+            top: height
+        })
+    });
+    
     if (width < height) {
         ANIMATION_ON = false;
     }
