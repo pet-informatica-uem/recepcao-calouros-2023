@@ -18,7 +18,7 @@
 
   > #links {
     margin-top: 18rem;
-    margin-left: 5rem;
+    // margin-left: 5rem;
 
     display: flex;
     flex-direction: column;
@@ -41,7 +41,6 @@
         padding: 0rem;
         gap: 2rem;
         width: 40rem;
-        height: 14rem;
 
         > .icon-box {
           display: flex;
@@ -53,6 +52,11 @@
 
           width: 14rem;
           height: 14rem;
+          --sz: 10rem;
+
+          img {
+            width: 100%;
+          }
         }
 
         > .link-list {
@@ -81,7 +85,7 @@
           }
 
           //padrozina borda p/ cada elemento
-          border-left: 0.2rem solid;
+          border-left: var(--color) 0.2rem solid;
 
           .uem-icon {
             width: 1.5rem;
@@ -90,75 +94,99 @@
 
           //links flutuam
           a:hover {
-              transform: scale(1.02);
+            transform: scale(1.02);
+          }
+        }
+
+        @media (max-width: 440px) {
+          flex-flow: column;
+          > .link-list {
+            border-top: var(--color) 0.2rem solid;
+            border-left: none;
+            margin-top: 1rem;
+          }
+          > .icon-box {
+            --sz: 14rem;
           }
         }
       }
 
-      #uem > .icon-box > img {
-        height: 14rem;
+      #uem > .icon-box {
+        width: calc(var(--sz) * 1.2);
+        @media (min-width: 900px) {
+          margin-left: 3rem;
+        }
       }
 
-      #caccom > .icon-box > img {
-        height: 12rem;
+      #caccom > .icon-box {
+        width: calc(var(--sz) * 1.2);
       }
 
-      #pet > .icon-box > img {
-        width: 16rem;
+      #pet > .icon-box {
+        width: calc(var(--sz) * 1.6);
+        @media (max-width: 900px) {
+          @media (min-width: 440px) {
+            width: calc(var(--sz) * 1.2);
+          }
+        }
       }
 
-      #conectadas > .icon-box > img {
-        height: 12rem;
+      #conectadas > .icon-box {
+        width: calc(var(--sz) * 1.2);
       }
 
-      #din > .icon-box > img {
-        width: 16rem;
+      #din > .icon-box {
+        width: calc(var(--sz) * 1.6);
+        @media (max-width: 900px) {
+          @media (min-width: 440px) {
+            width: calc(var(--sz) * 1.2);
+          }
+        }
       }
 
-      #cainfo > .icon-box > img {
-        height: 14rem;
+      #cainfo > .icon-box {
+        width: calc(var(--sz) * 1.2);
       }
-      
-      
-      #uem > .link-list{
-        border-left-color: #9dffa1;
-        a:hover{
-          color:  #9dffa1;  
+
+      #uem > .link-list {
+        --color: #9dffa1;
+        a:hover {
+          color: var(--color);
         }
       }
 
       #caccom > .link-list {
-        border-left-color: #FF4D4D;
-        a:hover{
-          color:  #FF4D4D;  
+        --color: #ff4d4d;
+        a:hover {
+          color: var(--color);
         }
       }
 
       #pet > .link-list {
-        border-left-color: #5BECFF;
-        a:hover{
-          color:  #5BECFF;  
+        --color: #5becff;
+        a:hover {
+          color: var(--color);
         }
       }
-      
+
       #conectadas > .link-list {
-        border-left-color: #FF61C6;
-        a:hover{
-          color:  #FF61C6;  
+        --color: #ff61c6;
+        a:hover {
+          color: var(--color);
         }
       }
 
       #din > .link-list {
-        border-left-color: #FF8A1E;
-        a:hover{
-          color:  #FF8A1E;  
+        --color: #ff8a1e;
+        a:hover {
+          color: var(--color);
         }
       }
 
       #cainfo > .link-list {
-        border-left-color: #F4FF61;
-        a:hover{
-          color:  #F4FF61;  
+        --color: #f4ff61;
+        a:hover {
+          color: var(--color);
         }
       }
     }
@@ -200,17 +228,12 @@
   }
 }
 
-@media (max-width: calc(900px + 5rem)) {
+@media (max-width: calc(900px)) {
   #footer {
     #links {
-      flex-wrap: wrap;
       gap: 6rem;
       > div {
-        flex-wrap: wrap;
         flex-direction: column;
-        // flex-direction: column;
-        // justify-content: left;
-        // align-items: flex-start;
         padding: 0rem;
         gap: 6rem;
       }

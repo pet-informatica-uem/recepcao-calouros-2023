@@ -34,7 +34,7 @@
     .seletor-data {
       margin-left: 2ch;
     }
-    
+
     // Offsets
     .titulo-cronograma {
       grid-area: titulo;
@@ -53,12 +53,12 @@
     .programacao {
       grid-area: eventos;
       padding-top: 1.2rem;
-  
+
       .dia-titulo {
         top: 15.6rem;
         position: sticky;
       }
-  
+
       .dia-data {
         top: 12.4rem;
         position: sticky;
@@ -102,7 +102,7 @@
 
     .programacao {
       padding-top: 1.2rem;
-  
+
       // .dia-data {
       //   top: 17.7rem;
       //   position: sticky;
@@ -112,7 +112,6 @@
       //   top: 21rem;
       //   position: sticky;
       // }
-  
     }
 
     // conserta o erro de offset
@@ -123,8 +122,6 @@
       margin: -17.4rem 0 0;
     }
   }
-
-  
 
   .titulo-cronograma {
     font-size: 4.8rem;
@@ -198,6 +195,8 @@
       color: var(--cor-amarelo);
       font-size: 3.2rem;
       max-height: 3.2rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
 
       background-color: var(--cor-azul);
     }
