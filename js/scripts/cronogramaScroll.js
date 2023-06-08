@@ -7,7 +7,6 @@ window.onscroll = () => {
   let atual = primeiroId;
 
   const posiçãoCronograma = cronograma.offsetTop - scrollY;
-  console.log(posiçãoCronograma);
 
   dias.forEach((seção) => {
     const posiçãoSeção = posiçãoCronograma + seção.offsetTop;
@@ -24,6 +23,4 @@ window.onscroll = () => {
       seletor.classList.add("active");
     }
   });
-
-  console.log(atual);
 };
