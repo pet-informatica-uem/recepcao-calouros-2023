@@ -127,7 +127,7 @@ class CameraComponent {
     }
 }
 
-(() => {
+(async () => {
     const mountainsDiv = document.getElementById('render');
     const width = mountainsDiv?.clientWidth??innerWidth;
     const height = mountainsDiv?.clientHeight??innerHeight;
@@ -171,38 +171,38 @@ class CameraComponent {
     const loader = new GLTFLoader();
     let obj;
 
-    loader.load(island, (gltf) => {
-        obj = gltf.scene.children[0];
-        obj.scale.set(10, 10, 10);
+    const gltf = await loader.loadAsync(island);
 
-        let texture = new THREE.TextureLoader().load(tex);
-    
-        texture.matrixAutoUpdate = false;
-        texture.needsUpdate = false;
-        texture.magFilter = THREE.NearestFilter;
-        texture.minFilter = THREE.LinearMipMapLinearFilter;
-        texture.wrapS = THREE.RepeatWrapping;
-        texture.wrapT = THREE.RepeatWrapping;
-        // texture.repeat.set(.15, .15);
-        texture.updateMatrix();
+    obj = gltf.scene.children[0];
+    obj.scale.set(10, 10, 10);
 
-        const material = new THREE.MeshStandardMaterial({
-            map: texture,
-            emissive: 0xff64ff,
-            emissiveIntensity: 10,
-            emissiveMap: texture,
-            roughness: .6,
-        });
+    let texture = await new THREE.TextureLoader().loadAsync(tex);
 
-        //@ts-ignore: material existe na mesh mas ta dando erro
-        obj.material = material;
-        obj.matrixAutoUpdate = false;
-        obj.translateY(-.05);
-        obj.updateMatrix();
-        scene.add(obj);
+    texture.matrixAutoUpdate = false;
+    texture.needsUpdate = false;
+    texture.magFilter = THREE.NearestFilter;
+    texture.minFilter = THREE.LinearMipMapLinearFilter;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    // texture.repeat.set(.15, .15);
+    texture.updateMatrix();
+
+    const material = new THREE.MeshStandardMaterial({
+        map: texture,
+        emissive: 0xff64ff,
+        emissiveIntensity: 10,
+        emissiveMap: texture,
+        roughness: .6,
     });
 
-    setupPalms(scene);
+    //@ts-ignore: material existe na mesh mas ta dando erro
+    obj.material = material;
+    obj.matrixAutoUpdate = false;
+    obj.translateY(-.05);
+    obj.updateMatrix();
+    scene.add(obj);
+
+    await setupPalms(scene);
 
     let sun = new THREE.IcosahedronGeometry(.02, 1);
     let sunMat = new THREE.MeshStandardMaterial({
@@ -254,8 +254,8 @@ function onWindowResize(camera, renderer) {
     renderer.setSize(width, height);
 }
 
-function setupPalms(scene) {
-    const texture = new THREE.TextureLoader().load(palmeira);
+async function setupPalms(scene) {
+    const texture = await new THREE.TextureLoader().loadAsync(palmeira);
 
     for (let i = 0; i < NUMERO_PALMEIRAS; i++) {
         const palm = new THREE.Sprite(new THREE.SpriteMaterial({
