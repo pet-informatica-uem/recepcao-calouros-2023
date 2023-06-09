@@ -24,4 +24,4 @@ Para compilar o site você deve executar o comando
 
 `npm run build`
 
-Na pasata /dist estará seu site pronto e compilado, bastando apenas abrir o dist/index.html em seu navegador
+Na pasta `/dist` estará seu site pronto e compilado, bastando apenas abrir o dist/index.html em seu navegador.
