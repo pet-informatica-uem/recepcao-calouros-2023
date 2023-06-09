@@ -227,6 +227,12 @@ class CameraComponent {
         onWindowResize(camera, renderer)
     });    
 
+    //precisa renderizar mais de um frame para o bloom funcionar corretamenteg
+    function preRender(frames = 5) {
+        for(let i = 0; i < frames; i++)
+            camera.draw(renderer, scene);
+    }
+    preRender();
     let _time = 0;
     let dt = 0;
     function render(ms) {
@@ -237,8 +243,8 @@ class CameraComponent {
         if (ANIMATION_ON){
             camera.rotate(-dt/2);
             camera.update(dt);   
+            camera.draw(renderer, scene);
         }
-        camera.draw(renderer, scene);
     }
     render(0);
 })();
