@@ -1,9 +1,21 @@
 .sec-hero {
   height: 100%;
-  height: 65.5rem;
+  height: calc(100vh - 0rem);
   background-image: url(../assets/bg.png);
   background-position: center;
+  background-repeat: repeat-x;
+  background-size: cover;
   position: relative;
+
+  #render {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0rem;
+    object-fit: cover;
+    overflow: hidden;
+    z-index: 0;
+  }
 
   > img {
     width: 100%;
@@ -22,57 +34,102 @@
     max-width: 92.5rem;
     margin: 0 auto;
     position: relative;
-    padding-top: 6.2rem;
+    z-index: 99;
 
     img {
       position: absolute;
     }
 
-    .palmito {
-      bottom: 5rem;
-      width: 100%;
-      z-index: 4;
-      // animation: leftToRightToleft 2s infinite;
+    i.ph-play {
+      position: absolute;
+      top: 2rem;
+      right: 2.5rem;
+      font-size: 2rem;
+      color: #CCC;
+      opacity: .5;
+      cursor: pointer;
+      transition-duration: 200ms;
+
+      &:hover {
+        transition-duration: 200ms;
+        opacity: 1;
+      }
     }
 
-    .sol {
-      left: 7rem;
-      animation: flutuate 15s infinite;
+    .veja-horarios {
+      width: 100%;
+      text-align: center;
+      color: #CCC;
+      opacity: .5;
+      position: absolute;
+      bottom: 2rem;
+      font-size: 1.5rem;
+      font-family: "Roboto Mono";
+      cursor: pointer;
+      transition-duration: 200ms;
+
+      &:hover {
+        transition-duration: 200ms;
+        opacity: 1;
+      }
+
+      span {
+        text-align: center;
+      }
     }
+
+    // .palmito {
+    //   bottom: 5rem;
+    //   width: 100%;
+    //   z-index: 4;
+    //   // animation: leftToRightToleft 2s infinite;
+    // }
+
+    // .sol {
+    //   left: 7rem;
+    //   animation: flutuate 15s infinite;
+    // }
 
     .logo {
       width: 100%;
-      height: fit-content;
+      height: 100%;
       max-width: 41rem;
       margin: 0 auto;
       position: relative;
+      
       .logo-escrito {
-        top: 6rem;
+        top: 30%;
+        transform: translateY(-10rem);
         z-index: 4;
         width: 100%;
       }
 
       .tri-rosa {
         z-index: 3;
-        top: -2rem;
+        top: 30%;
+        transform: translateY(-20rem);
         width: 100%;
       }
 
       .tri-marelo {
         z-index: 0;
+        top: 30%;
+        transform: translateY(-18rem);
         width: 100%;
       }
     }
+
     .titulo-container {
-      width: 100%;
+      width: 90%;
       max-width: 52.2rem;
       bottom: 0;
       margin: 0 auto;
+
       .titulo {
         animation: titleAnimation 15s infinite;
-        bottom: 20.6rem;
+        bottom: 30%;  
         z-index: 4;
-        width: 100%;
+        width: 90%;
         max-width: 52.2rem;
       }
     }
