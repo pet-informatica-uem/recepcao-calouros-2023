@@ -78,8 +78,6 @@ class CameraComponent {
         this.#composer.addPass(this.#renderPass);
         this.#composer.addPass(this.#bloomPass);
         this.#composer.addPass(this.#outputPass);
-
-        console.log(this.#composer);
     }
 
     resetPerspectiveCam() {
