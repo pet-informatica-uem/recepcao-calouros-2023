@@ -45,8 +45,8 @@
       top: 2rem;
       right: 2.5rem;
       font-size: 2rem;
-      color: #CCC;
-      opacity: .5;
+      color: #ccc;
+      opacity: 0.5;
       cursor: pointer;
       transition-duration: 200ms;
 
@@ -59,12 +59,12 @@
     .veja-horarios {
       width: 100%;
       text-align: center;
-      color: #CCC;
-      opacity: .5;
+      color: #ccc;
+      opacity: 0.5;
       position: absolute;
       bottom: 2rem;
       font-size: 1.5rem;
-      font-family: "Roboto Mono";
+      font-family: 'Roboto Mono';
       cursor: pointer;
       transition-duration: 200ms;
 
@@ -96,7 +96,7 @@
       max-width: 41rem;
       margin: 0 auto;
       position: relative;
-      
+
       .logo-escrito {
         top: 30%;
         transform: translateY(-10rem);
@@ -127,7 +127,7 @@
 
       .titulo {
         animation: titleAnimation 15s infinite;
-        bottom: 30%;  
+        bottom: 30%;
         z-index: 4;
         width: 90%;
         max-width: 52.2rem;
@@ -174,7 +174,9 @@
           }
           a {
             img {
-              max-width: max-content;
+              min-width: 8rem;
+              max-width: 8rem;
+              object-fit: contain;
             }
           }
         }

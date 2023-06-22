@@ -78,7 +78,7 @@
             gap: 1rem;
             color: white;
             text-decoration: none;
-            font-family: "Roboto Mono";
+            font-family: 'Roboto Mono';
             font-style: normal;
             font-weight: 400;
             font-size: 1.5rem;
@@ -149,42 +149,42 @@
       }
 
       #uem > .link-list {
-        --color: #9dffa1;
+        --color: #fff;
         a:hover {
           color: var(--color);
         }
       }
 
       #caccom > .link-list {
-        --color: #ff4d4d;
+        --color: #fff;
         a:hover {
           color: var(--color);
         }
       }
 
       #pet > .link-list {
-        --color: #5becff;
+        --color: #fff;
         a:hover {
           color: var(--color);
         }
       }
 
       #conectadas > .link-list {
-        --color: #ff61c6;
+        --color: #fff;
         a:hover {
           color: var(--color);
         }
       }
 
       #din > .link-list {
-        --color: #ff8a1e;
+        --color: #fff;
         a:hover {
           color: var(--color);
         }
       }
 
       #cainfo > .link-list {
-        --color: #f4ff61;
+        --color: #fff;
         a:hover {
           color: var(--color);
         }
@@ -197,7 +197,7 @@
     margin-bottom: 2rem;
     display: inline-block;
 
-    font-family: "VT323";
+    font-family: 'VT323';
     font-style: normal;
     font-weight: 400;
     font-size: 1.8rem;
